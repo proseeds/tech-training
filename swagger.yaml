@@ -49,8 +49,8 @@ paths:
       description: "カテゴリーの更新"
       parameters:
       - in: "path"
-        name: "tenantId"
-        description: "テナントID"
+        name: "userId"
+        description: "ユーザーID"
         required: true
         type: integer
       - in: "body"
@@ -73,8 +73,8 @@ paths:
       description: "カテゴリーの削除"
       parameters:
       - in: "path"
-        name: "tenantId"
-        description: "テナントID"
+        name: "userId"
+        description: "ユーザーID"
         required: true
         type: integer
       responses:
