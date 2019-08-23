@@ -1,0 +1,133 @@
+swagger: "2.0"
+info:
+  title: "User API"
+tags:
+- name: "user"
+  description: "ユーザー"
+schemes:
+- "http"
+paths:
+  /user:
+    post:
+      tags:
+      - "user"
+      description: "ユーザーの新規登録"
+      parameters:
+      - in: "body"
+        required: true
+        name: body
+        schema:
+          $ref: "#/definitions/UserPost"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/UserPostResponse"    
+  /user/{userId}:
+    get:
+      tags:
+      - "user"
+      description: "カテゴリーの取得"
+      parameters:
+      - in: "path"
+        name: "userId"
+        description: "ユーザーID"
+        required: true
+        type: integer
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/UserPost"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/NotFound"
+    put:
+      tags:
+      - "user"
+      description: "カテゴリーの更新"
+      parameters:
+      - in: "path"
+        name: "tenantId"
+        description: "テナントID"
+        required: true
+        type: integer
+      - in: "body"
+        required: true
+        name: body
+        schema:
+          $ref: "#/definitions/UserPut"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/UserPutResponse"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/NotFound"
+    delete:
+      tags:
+      - "user"
+      description: "カテゴリーの削除"
+      parameters:
+      - in: "path"
+        name: "tenantId"
+        description: "テナントID"
+        required: true
+        type: integer
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Deleted"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/NotFound"      
+ 
+definitions:
+  UserPost:
+    type: "object"
+    properties:
+      name:
+        type: string
+        example: tanaka
+      age: 
+        type: integer
+        example: 25
+  UserPostResponse:
+    type: "object"
+    properties:
+      user_id:
+        type: integer
+        example: 1
+  UserPut:
+    type: "object"
+    properties:
+      name:
+        type: string
+        example: taro
+  UserPutResponse:
+    type: "object"
+    properties:
+      name:
+        type: string
+        example: taro
+      age:
+        type: integer
+        example: 25
+  NotFound:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+        example: "対象のレコードが見つかりません"
+  Deleted:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+        example: "対象のレコードを削除しました。"
+        
