@@ -2,38 +2,38 @@ swagger: "2.0"
 info:
   title: "User API"
 tags:
-- name: "user"
-  description: "ユーザー"
+  - name: "user"
+    description: "ユーザー"
 schemes:
-- "http"
+  - "http"
 paths:
   /user:
     post:
       tags:
-      - "user"
+        - "user"
       description: "ユーザーの新規登録"
       parameters:
-      - in: "body"
-        required: true
-        name: body
-        schema:
-          $ref: "#/definitions/UserPost"
+        - in: "body"
+          required: true
+          name: body
+          schema:
+            $ref: "#/definitions/UserPost"
       responses:
         201:
           description: "Created"
           schema:
-            $ref: "#/definitions/UserPostResponse"    
+            $ref: "#/definitions/UserPostResponse"
   /user/{userId}:
     get:
       tags:
-      - "user"
-      description: "カテゴリーの取得"
+        - "user"
+      description: "ユーザーの取得"
       parameters:
-      - in: "path"
-        name: "userId"
-        description: "ユーザーID"
-        required: true
-        type: integer
+        - in: "path"
+          name: "userId"
+          description: "ユーザーID"
+          required: true
+          type: integer
       responses:
         200:
           description: "OK"
@@ -45,19 +45,19 @@ paths:
             $ref: "#/definitions/NotFound"
     put:
       tags:
-      - "user"
-      description: "カテゴリーの更新"
+        - "user"
+      description: "ユーザーの更新"
       parameters:
-      - in: "path"
-        name: "userId"
-        description: "ユーザーID"
-        required: true
-        type: integer
-      - in: "body"
-        required: true
-        name: body
-        schema:
-          $ref: "#/definitions/UserPut"
+        - in: "path"
+          name: "userId"
+          description: "ユーザーID"
+          required: true
+          type: integer
+        - in: "body"
+          required: true
+          name: body
+          schema:
+            $ref: "#/definitions/UserPut"
       responses:
         200:
           description: "OK"
@@ -69,14 +69,14 @@ paths:
             $ref: "#/definitions/NotFound"
     delete:
       tags:
-      - "user"
-      description: "カテゴリーの削除"
+        - "user"
+      description: "ユーザーの削除"
       parameters:
-      - in: "path"
-        name: "userId"
-        description: "ユーザーID"
-        required: true
-        type: integer
+        - in: "path"
+          name: "userId"
+          description: "ユーザーID"
+          required: true
+          type: integer
       responses:
         200:
           description: "OK"
@@ -85,8 +85,8 @@ paths:
         404:
           description: "Not Found"
           schema:
-            $ref: "#/definitions/NotFound"      
- 
+            $ref: "#/definitions/NotFound"
+
 definitions:
   UserPost:
     type: "object"
@@ -94,7 +94,7 @@ definitions:
       name:
         type: string
         example: tanaka
-      age: 
+      age:
         type: integer
         example: 25
   UserPostResponse:
@@ -130,4 +130,3 @@ definitions:
       message:
         type: "string"
         example: "対象のレコードを削除しました。"
-        
